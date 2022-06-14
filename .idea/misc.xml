@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_layout.xml" value="0.160081053698075" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.16641337386018237" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17291666666666666" />
+        <entry key="app/src/main/res/xml/fileprovider.xml" value="0.15555555555555556" />
       </map>
     </option>
   </component>
@@ -13,5 +15,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.17291666666666666" />
+      </ProjectState>
+    </option>
   </component>
 </project>
