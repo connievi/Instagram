@@ -50,6 +50,26 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String description = etDescription.getText().toString();
+                if (description.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (photoFile == null || ivPostImage.getDrawable() == null) {
+                    Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePost(description, currentUser, photoFile);
+
+                // make submit button go to feed
+                Intent i = new Intent(MainActivity.this, FeedActivity.class);
+                startActivity(i);
+            }
+        });
 
         btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -66,24 +86,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 launchCamera();
-            }
-        });
-
-        // queryPosts();
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String description = etDescription.getText().toString();
-                if (description.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (photoFile == null || ivPostImage.getDrawable() == null) {
-                    Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFile);
             }
         });
     }
@@ -162,10 +164,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void logoutUser() {
         Log.i(TAG, "Attempting to logout user");
-        goLoginActivity();
-    }
-
-    private void goLoginActivity() {
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();
