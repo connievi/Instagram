@@ -58,13 +58,19 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                goMainActivity();
+                goFeedActivity();
             }
         });
     }
 
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class); // this refers to this activity which is a context
+        startActivity(i);
+        finish();
+    }
+
+    private void goFeedActivity() {
+        Intent i = new Intent(this, FeedActivity.class);
         startActivity(i);
         finish();
     }
