@@ -25,18 +25,14 @@ import android.widget.Toast;
 
 import com.example.instagram.FeedActivity;
 import com.example.instagram.LoginActivity;
-import com.example.instagram.MainActivity;
 import com.example.instagram.Post;
 import com.example.instagram.R;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.

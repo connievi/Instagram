@@ -39,9 +39,6 @@
             android:name=".MainActivity"
             android:exported="true"/>
         <activity
-            android:name=".FeedActivity"
-            android:exported="true"/>
-        <activity
             android:name=".PostDetailsActivity"
             android:exported="true"/>
         <activity
