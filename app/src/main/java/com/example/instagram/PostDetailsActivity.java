@@ -28,7 +28,6 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     Post post;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,11 +46,13 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvCaption.setText(post.getDescription());
         tvUsername.setText(post.getUser().getUsername());
 
+//        ParseFile image = post.getImage();
+//        if (image != null) {
+//            Glide.with(this).load(image.getUrl()).into(ivImage);
+//        }
+
         Date createdAt = post.getCreatedAt();
         String timeAgo = Post.calculateTimeAgo(createdAt);
         tvCreatedAt.setText(timeAgo);
     }
-
-
-
 }
