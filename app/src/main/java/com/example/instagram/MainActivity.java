@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 launchCamera();
             }
