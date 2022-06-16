@@ -50,26 +50,6 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
-
-        btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "onClick logout button");
-                ParseUser.logOutInBackground();
-                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                logoutUser();
-            }
-        });
-
-        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchCamera();
-            }
-        });
-
-        // queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +64,27 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+
+                // make submit button go to feed
+                Intent i = new Intent(MainActivity.this, FeedActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick logout button");
+                ParseUser.logOutInBackground();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                logoutUser();
+            }
+        });
+
+        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                launchCamera();
             }
         });
     }
@@ -162,10 +163,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void logoutUser() {
         Log.i(TAG, "Attempting to logout user");
-        goLoginActivity();
-    }
-
-    private void goLoginActivity() {
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();
@@ -184,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
                 for (Post post: posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
-
             }
         });
 
