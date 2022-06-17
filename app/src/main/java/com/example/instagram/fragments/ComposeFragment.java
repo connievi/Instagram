@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.instagram.FeedActivity;
 import com.example.instagram.LoginActivity;
+import com.example.instagram.MainActivity;
 import com.example.instagram.Post;
 import com.example.instagram.R;
 import com.parse.ParseException;
@@ -91,7 +92,7 @@ public class ComposeFragment extends Fragment {
                 savePost(description, currentUser, photoFile);
 
                 // make submit button go to feed
-                Intent i = new Intent(getContext(), FeedActivity.class);
+                Intent i = new Intent(getContext(), MainActivity.class);
                 startActivity(i);
             }
         });
@@ -123,7 +124,7 @@ public class ComposeFragment extends Fragment {
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider.connie", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.

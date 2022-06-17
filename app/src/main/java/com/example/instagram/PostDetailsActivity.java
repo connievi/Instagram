@@ -37,7 +37,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvUsername = (TextView) findViewById(R.id.tvUsername);
         tvCaption = (TextView) findViewById(R.id.tvCaption);
         tvCreatedAt = (TextView) findViewById(R.id.tvCreatedAt);
-        //ivImage = (ImageView) findViewById(R.id.ivImage);
 
         if (getIntent().getExtras() != null) {
             post = (Post) getIntent().getParcelableExtra("Post");

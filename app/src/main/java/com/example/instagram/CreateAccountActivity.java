@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class CreateAccountActivity extends AppCompatActivity {
     public static final String TAG = "CreateAccountActivity";
@@ -55,8 +56,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 }
 
                 try {
-                    saveUser(email, password, email);
-                    goMainActivity();
+                    saveUser(email, username, password);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -70,7 +70,17 @@ public class CreateAccountActivity extends AppCompatActivity {
         newUser.put("username", username);
         newUser.put("password", password);
         newUser.put("email", email);
-        newUser.signUp();
+        newUser.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with login", e);
+                    Toast.makeText(CreateAccountActivity.this, "Issue with creating account!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                goMainActivity();
+            }
+        });
     }
 
     private void goMainActivity() {
